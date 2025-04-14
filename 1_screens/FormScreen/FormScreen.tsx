@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import NameStep from './01_NameStep';
 import AgeWeightStep from './02_AgeWeightStep';
+import BreedStep from './03_BreedStep';
 
 export default function FormScreen() {
   const [step, setStep] = useState(1);
@@ -14,8 +15,8 @@ export default function FormScreen() {
   useEffect(() => {
     const handleNextStep = () => {
       console.log("nextStep 이벤트 감지됨");
-      setCompletedSteps(prev => [...prev, step]);
-      setStep(prevStep => prevStep + 1);
+      setCompletedSteps((prev) => [...prev, step]);
+      setStep((prevStep) => (prevStep < 3 ? prevStep + 1 : 1));
     };
 
     window.addEventListener('nextStep', handleNextStep);
@@ -84,6 +85,19 @@ export default function FormScreen() {
               style={{ zIndex: completedSteps.length + 1 }}
             >
               <AgeWeightStep />
+            </motion.div>
+          )}
+          {step === 3 && (
+            <motion.div
+              key="breed-step"
+              className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg"
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              style={{ zIndex: completedSteps.length + 1 }}
+            >
+              <BreedStep onNext={() => setStep(step + 1)} />
             </motion.div>
           )}
         </AnimatePresence>
