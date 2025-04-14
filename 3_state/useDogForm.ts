@@ -1,13 +1,7 @@
 // 3_state/useDogForm.ts
 
 import { useState } from 'react';
-
-export interface DogProfile {
-  name: string;
-  age: number;
-  weight: number;
-  breed: string;
-}
+import { DogProfile } from '../7_types/dog';
 
 export interface SelectOption {
   value: string;
@@ -21,6 +15,14 @@ export function useDogForm() {
     weight: 0,
     breed: '',
   });
+
+  const updateAgeWeight = (data: { age: number; weight: number }) => {
+    setDogForm((prev) => ({
+      ...prev,
+      age: data.age,
+      weight: data.weight,
+    }));
+  };
 
   // React Select를 위한 유틸리티 함수들
   const getBreedAsOption = (): SelectOption | null => {
@@ -37,6 +39,7 @@ export function useDogForm() {
   return { 
     dogForm, 
     setDogForm,
+    updateAgeWeight,
     // React Select 헬퍼 함수들
     getBreedAsOption,
     updateBreed

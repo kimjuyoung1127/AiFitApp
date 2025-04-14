@@ -15,14 +15,21 @@ export default function FormScreen() {
   useEffect(() => {
     const handleNextStep = () => {
       console.log("nextStep 이벤트 감지됨");
-      setCompletedSteps((prev) => [...prev, step]);
+      setCompletedSteps((prev) => Array.from(new Set([...prev, step])));
       setStep((prevStep) => (prevStep < 3 ? prevStep + 1 : 1));
     };
 
+    const handlePrevStep = () => {
+      console.log("prevStep 이벤트 감지됨");
+      setStep((prevStep) => (prevStep > 1 ? prevStep - 1 : 1));
+    };
+
     window.addEventListener('nextStep', handleNextStep);
+    window.addEventListener('prevStep', handlePrevStep);
     
     return () => {
       window.removeEventListener('nextStep', handleNextStep);
+      window.removeEventListener('prevStep', handlePrevStep);
     };
   }, [step]);
 
@@ -84,7 +91,7 @@ export default function FormScreen() {
               exit="exit"
               style={{ zIndex: completedSteps.length + 1 }}
             >
-              <AgeWeightStep />
+              <AgeWeightStep onNext={() => setStep(step + 1)} />
             </motion.div>
           )}
           {step === 3 && (
