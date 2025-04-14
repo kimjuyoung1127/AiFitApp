@@ -1,0 +1,17 @@
+---
+description: 강아지 정보 입력 흐름(FormScreen)은 순차적인 Step 슬라이드 형식으로 구성되며, 각 단계는 DogProfile의 일부 속성을 입력받는다. 모든 상태는 useDogForm.ts를 통해 중앙 관리되며, 타입은 7_types/dog.ts의 DogProfile을 기준으로 한다.
+globs: 1_screens/FormScreen/*.tsx, 3_state/useDogForm.ts, 7_types/dog.ts
+---
+각 FormStep 컴포넌트는 1_screens/FormScreen/ 안에 위치해야 하며, 파일명은 번호_설명Step.tsx 형식으로 정리합니다.
+
+예: 01_NameStep.tsx, 03_BreedStep.tsx
+
+각 Step은 개별 입력 필드(또는 그룹)를 담당하며 React Hook Form + Zod를 사용하여 유효성 검사를 수행합니다.
+
+모든 입력값은 DogProfile 타입을 기준으로 하며, 상태 저장은 useDogForm.ts에서 진행합니다.
+
+텍스트(질문, 버튼, 오류 메시지)는 하드코딩하지 않고 반드시 i18next key로 처리합니다.
+
+입력이 완료되면 다음 Step으로 자동 전환되며, useStep.ts를 통해 현재 단계 상태를 관리합니다.
+
+최종 제출은 FinalReviewStep.tsx에서 요약 확인 → ConfirmStep.tsx에서 완료 처리 및 추천 페이지로 이동합니다.

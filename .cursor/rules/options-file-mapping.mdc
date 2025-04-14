@@ -1,0 +1,9 @@
+---
+description: 각 입력 스텝에서 사용하는 옵션(checkbox, select 등) 데이터를 관리하는 방식
+globs: 6_data/options/*.ts, 1_screens/FormScreen/*.tsx
+---
+## 📦 옵션 파일 구조 및 매핑 규칙
+
+- 각 Step은 `6_data/options` 폴더 안의 옵션 파일과 1:1 매핑되어야 합니다.
+- 예시: `HealthStep.tsx` → `healthOptions.ts`, `PreferenceStep.tsx` → `preferenceOptions.ts`
+- 옵션 데이터는 이모지 포함 객체 배열 형식이며, 반드시 export되어야 합니다.

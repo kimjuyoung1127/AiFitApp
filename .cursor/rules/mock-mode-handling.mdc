@@ -1,0 +1,9 @@
+---
+description: API 호출이 불가능할 경우를 대비한 모의(mock) 데이터 처리 지침
+globs: 5_ai/recommend.ts, 6_data/mockExercises.ts
+---
+## 🧪 Mock 모드 처리 규칙
+
+- 실제 API가 연결되지 않은 경우 `mockExercises.ts`를 기반으로 추천 데이터를 반환합니다.
+- 모의 데이터는 실제 응답 포맷과 동일해야 하며, 사용자 입장에서 구분이 가지 않아야 합니다.
+- `recommend.ts` 내에서 `USE_MOCK=true`로 설정 시 mock 데이터를 반환하게 구현되어야 합니다.

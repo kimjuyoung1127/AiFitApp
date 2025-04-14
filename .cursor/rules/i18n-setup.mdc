@@ -1,0 +1,10 @@
+---
+description: DogFit 앱 전반에 다국어 지원(i18n)을 적용하기 위한 규칙입니다.   기존에 하드코딩된 한국어 텍스트를 모두 i18n key로 전환하고, 언어 선택에 따라 텍스트가 자동으로 변경되도록 합니다.
+globs: app/**/*.{tsx,ts}   public/locales/**/*   next-i18next.config.js 
+---
+- 라이브러리: `next-i18next` 사용
+- 지원 언어: `ko`(기본), `en`
+- 다국어 JSON 위치: `/public/locales/{ko,en}/common.json`
+- 설정 파일: `next-i18next.config.js`
+
+DogFit 프로젝트의 모든 텍스트는 t("key") 형태로 작성하고, 실제 언어 적용은 나중에 common.json만 채우는 방식으로 구성합니다. 언어 전환 기능은 구현은 늦춰도 무관합니다.

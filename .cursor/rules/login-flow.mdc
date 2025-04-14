@@ -1,0 +1,41 @@
+---
+description: 로그인, 회원가입, 비밀번호 재설정 등 인증 관련 컴포넌트를 슬라이드 애니메이션 기반으로 전환 처리하며, 한 화면 내에서 사용자 경험을 연결감 있게 구성한다.
+globs: 
+---
+/app
+ └── login_flow/
+      ├── page.tsx                   # 슬라이드 전환 메인 페이지
+      ├── layout.tsx                 # 공통 레이아웃 (배경색, 중앙정렬 등)
+      ├── LoginForm.tsx              # 로그인 폼
+      ├── SignupForm.tsx             # 회원가입 폼
+      ├── ResetForm.tsx              # 비밀번호 재설정 폼
+      ├── AuthSlider.tsx             # 로그인 ↔ 회원가입 슬라이드 전환 컴포넌트
+      ├── BackButton.tsx             # 뒤로가기 버튼 (슬라이드 안에서)
+      └── constants.ts               # 상태 키 / 라벨 등 공통 텍스트 정의
+
+      [온보딩 종료 → /login_flow 진입]
+
+<AuthSlider>
+ ├── "로그인" 화면 기본 노출
+ ├── 회원가입 클릭 시: 슬라이드 전환 (왼쪽 ← 오른쪽)
+ ├── 비밀번호 재설정: 새로운 카드로 전환 (위/아래 등) # 🧩 슬라이드 전환 규칙
+
+- 로그인 → 회원가입: 오른쪽에서 왼쪽으로 슬라이드 (`x: 100 → 0`)
+- 회원가입 → 로그인: 왼쪽에서 오른쪽으로 슬라이드 (`x: -100 → 0`)
+- AnimatePresence는 `mode="wait"`로 설정하여 중첩 방지
+- 전환 시간: `duration: 0.4`, `ease: easeInOut`
+- Framer Motion 사용 필수
+
+---
+
+### 🎨 스타일 가이드
+
+- 전체 배경색: `#FFF6EE`
+- 카드 너비: `max-w-[520px]` ~ `600px`
+- 공통 패딩: `p-16 sm:p-20`
+- 각 폼은 `space-y-6` 기준으로 여백 유지
+- 슬라이드 카드 내부는 `rounded-2xl shadow-xl bg-white`
+
+---
+
+**Globs:**  

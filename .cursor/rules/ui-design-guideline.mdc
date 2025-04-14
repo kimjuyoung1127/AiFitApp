@@ -1,0 +1,27 @@
+---
+description: DogFit의 UI 감성과 사용성을 유지하기 위한 디자인 가이드입니다. 컴포넌트 작성 시 시각적 통일성과 UX 일관성을 위해 반드시 참조해야 합니다.
+globs: 2_ui/**/*.tsx, 1_screens/**/*.tsx
+---
+## 🎨 DogFit UI 디자인 가이드라인
+
+- 기본 UI는 [`shadcn/ui`](https://ui.shadcn.com/) 컴포넌트를 사용합니다.  
+  예: `Card`, `Button`, `Input`, `Textarea`, `Checkbox`, `Dialog` 등
+
+- 모든 스타일링은 TailwindCSS를 사용하며, 커스터마이징 시 `className`을 통해 확장합니다.
+
+- UI는 다음의 감성 키워드를 지향합니다:  
+  `귀엽고`, `친근하고`, `젊고`, `다정한 느낌`  
+  이를 위해 `이모지`, `말풍선 톤`, `둥근 모양`, `부드러운 색감` 등을 적극 활용합니다.
+
+- 모든 사용자 피드백(UI 메시지, 오류, 로딩 등)은  
+  명확하고 감성적으로 전달되어야 합니다.  
+  예: `"또이의 정보를 저장 중이에요..."`, `"입력이 조금 부족한 것 같아요 😅"`
+
+- 버튼, 입력창 등은 모바일 환경 기준 크기를 유지해야 합니다:  
+  - 버튼: `h-10 px-4` 이상  
+  - 입력창: `w-full`, `rounded-md`, `text-sm`
+
+- `Tailwind`를 사용할 때는 가독성을 위해 class는 기능 단위로 그룹화합니다.  
+  예:
+  ```tsx
+  <Button className="w-full h-10 px-4 text-sm font-semibold rounded-md bg-primary text-white hover:bg-primary/90 transition" />

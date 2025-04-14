@@ -1,0 +1,32 @@
+---
+description: DogFit 앱의 온보딩 화면은 사용자에게 앱의 기능과 가치를 소개하는 4단계 프로세스로 구성됩니다.   해당 온보딩 플로우는 아래와 같은 파일 구조 및 설계 기준을 반드시 따릅니다.
+globs: `8_app/onboarding/**/*`, `9_components/**/*`, `public/images/onboarding*.png`
+---
+## 디렉토리 구조
+
+- `/8_app/onboarding/`  
+  - `page.tsx` : 온보딩 페이지 라우트 (Next.js App Router 기준)
+  - `layout.tsx` : 온보딩 전용 레이아웃
+  - `/components/`
+    - `onboardingCard.tsx` : 한 장의 온보딩 카드 컴포넌트
+    - `stepIndicator.tsx` : 하단 dot 형식 단계 표시
+  - `/data/`
+    - `onboardingData.ts` : 각 온보딩 페이지별 이미지, 텍스트, 인덱스 정보
+    - `onboardingText.ts` : 텍스트만 따로 관리 (i18n 대응 가능)
+  - `/styles/`
+    - `onboarding.css` : 온보딩 전용 스타일 파일
+
+- `/9_components/`
+  - `Button.tsx` : 공통 버튼 컴포넌트 (온보딩에서도 사용됨)
+  - `LayoutWrapper.tsx` : 페이지 전체 레이아웃 감싸는 Wrapper
+
+- `/public/images/`
+  - `onboarding1.png` ~ `onboarding4.png` : 각 온보딩 카드에 사용되는 일러스트
+
+## 지켜야 할 규칙
+
+- 온보딩 카드 구성은 반드시 `onboardingCard.tsx` 를 통해 렌더링합니다.
+- 텍스트와 이미지는 모두 `onboardingData.ts` 에서 선언하고 가져옵니다.
+- 진행 단계는 `stepIndicator.tsx` 를 통해 시각적으로 표시합니다.
+- 온보딩 완료 후에는 다음 페이지(`/form` 또는 `/home`)로 자동 이동되어야 합니다.
+- 다국어 지원을 위해 텍스트는 `onboardingText.ts` 또는 i18next를 통해 분리 관리합니다.

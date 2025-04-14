@@ -1,0 +1,1 @@
+//슬라이딩 이외의 트랜지션 효과 (stack, fade, zoom, bubble) 적용 가능
