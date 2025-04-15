@@ -6,6 +6,7 @@ import NameStep from './01_NameStep';
 import AgeWeightStep from './02_AgeWeightStep';
 import BreedStep from './03_BreedStep';
 import SexStep from './04_SexStep';
+import HealthStep from './05_HealthStep';
 
 export default function FormScreen() {
   const [step, setStep] = useState(1);
@@ -17,7 +18,7 @@ export default function FormScreen() {
     const handleNextStep = () => {
       console.log("nextStep 이벤트 감지됨");
       setCompletedSteps((prev) => Array.from(new Set([...prev, step])));
-      setStep((prevStep) => (prevStep < 4 ? prevStep + 1 : 1));
+      setStep((prevStep) => (prevStep < 5 ? prevStep + 1 : 1));
     };
 
     const handlePrevStep = () => {
@@ -119,6 +120,19 @@ export default function FormScreen() {
               style={{ zIndex: completedSteps.length + 1 }}
             >
               <SexStep onNext={() => setStep(step + 1)} />
+            </motion.div>
+          )}
+          {step === 5 && (
+            <motion.div
+              key="health-step"
+              className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg"
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              style={{ zIndex: completedSteps.length + 1 }}
+            >
+              <HealthStep />
             </motion.div>
           )}
         </AnimatePresence>

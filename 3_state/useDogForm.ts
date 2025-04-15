@@ -15,6 +15,18 @@ export function useDogForm() {
     weight: 0,
     breed: '',
     sex: '',
+    health: {    
+      joint_knee: 0,
+      joint_hip: 0,
+      joint_frontlegs: 0,
+      joint_spine: 0,
+      heart: 0,
+      respiratory: 0,
+      obesity: 0,
+      vision: 0,
+      neurological: 0,
+      energy: 0
+    }
   });
 
   const updateAgeWeight = (data: { age: number; weight: number }) => {
