@@ -50,10 +50,14 @@ export default function BreedStep({ onNext }: { onNext: () => void }) {
     }),
   };
 
+  const onSubmit = () => {
+    window.dispatchEvent(new CustomEvent('nextStep'));
+  };
+
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-[#FFF6EE] px-4">
       <h2 className="text-lg font-medium mb-4 text-center">강아지의 견종을 선택해주세요 🐶</h2>
-      <form onSubmit={handleSubmit(onNext)} className="w-full max-w-xs">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-xs">
         <div className="max-w-[320px] mx-auto mb-3">
           <Select
             options={breeds}

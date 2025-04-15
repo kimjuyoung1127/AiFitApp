@@ -14,6 +14,7 @@ export function useDogForm() {
     age: 0,
     weight: 0,
     breed: '',
+    sex: '',
   });
 
   const updateAgeWeight = (data: { age: number; weight: number }) => {
