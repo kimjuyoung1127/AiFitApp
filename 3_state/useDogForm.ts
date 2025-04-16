@@ -39,7 +39,9 @@ export function useDogForm() {
       problemSolving: 0,
       speed: 0
     }
+    
   });
+
 
   const updateAgeWeight = (data: { age: number; weight: number }) => {
     setDogForm((prev) => ({
