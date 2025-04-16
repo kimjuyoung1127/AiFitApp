@@ -26,6 +26,18 @@ export function useDogForm() {
       vision: 0,
       neurological: 0,
       energy: 0
+    },
+    performance: {
+      endurance: 0,
+      mobility: 0,
+      reaction: 0,
+      focus: 0,
+      agility: 0,
+      balance: 0,
+      confidence: 0,
+      bodyAwareness: 0,
+      problemSolving: 0,
+      speed: 0
     }
   });
 

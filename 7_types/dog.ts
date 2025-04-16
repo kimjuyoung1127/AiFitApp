@@ -11,6 +11,19 @@ export interface HealthProfile {
   energy: number;
 }
 
+export interface PerformanceProfile {
+  endurance: number;
+  mobility: number;
+  reaction: number;
+  focus: number;
+  agility: number;
+  balance?: number;
+  confidence?: number;
+  bodyAwareness?: number;
+  problemSolving?: number;
+  speed?: number;
+}
+
 export interface DogProfile {
   name: string;
   age: number;
@@ -20,4 +33,5 @@ export interface DogProfile {
   healthConditions?: string[];
   exercisePreferences?: string[];
   health: HealthProfile;
+  performance: PerformanceProfile;
 }
