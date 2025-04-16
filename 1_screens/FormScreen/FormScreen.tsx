@@ -10,6 +10,9 @@ import HealthStep from './05_HealthStep';
 import PerformanceStep from './06_PerformanceStep';
 import PreferenceStep from './07_PreferenceStep';
 import EnvironmentAndTrainingStep from './08_EnvironmentAndTrainingStep';
+import ConfirmationStep from './09_ConfirmStep';
+import ProgressBar from './ProgressBar';
+import ConfirmStep from './09_ConfirmStep';
 
 export default function FormScreen() {
   const [step, setStep] = useState(1);
@@ -21,7 +24,7 @@ export default function FormScreen() {
     const handleNextStep = () => {
       console.log("nextStep 이벤트 감지됨");
       setCompletedSteps((prev) => Array.from(new Set([...prev, step])));
-      setStep((prevStep) => (prevStep < 8 ? prevStep + 1 : 1));
+      setStep((prevStep) => (prevStep < 9 ? prevStep + 1 : 1));
     };
 
     const handlePrevStep = () => {
@@ -51,6 +54,7 @@ export default function FormScreen() {
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen bg-[#FFF6EE] py-10">
+      <ProgressBar currentStep={step} totalSteps={9} />
       <div className="relative w-full max-w-md">
         {completedSteps.map((completedStep, index) => (
           <motion.div
@@ -177,7 +181,16 @@ export default function FormScreen() {
               <EnvironmentAndTrainingStep />
             </motion.div>
           )}
-        </AnimatePresence>
+          {step === 9 && (
+            <motion.div
+              key="confirm-step"
+              className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg"
+              variants={cardVariants}
+            >   
+              <ConfirmStep />
+            </motion.div>
+          )}
+        </AnimatePresence>  
       </div>
     </div>
   );

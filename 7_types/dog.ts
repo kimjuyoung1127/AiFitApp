@@ -34,4 +34,8 @@ export interface DogProfile {
   exercisePreferences?: string[];
   health: HealthProfile;
   performance: PerformanceProfile;
+  preferences?: {
+    selected: string[];
+    intensity: Record<string, number>;
+  };
 }
