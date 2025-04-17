@@ -17,6 +17,7 @@ export default function OnboardingPage() {
       title="강아지를 위한 건강한 하루의 시작 🐶"
       description="우리 강아지의 몸과 마음을 위한 맞춤 피트니스 루틴을 제공해요!"
       imagePath="/images/onboarding1.png"
+      onSkip={() => router.push('/home')} // Added onSkip prop to fix the error
       onNext={handleNext}
     />
   );

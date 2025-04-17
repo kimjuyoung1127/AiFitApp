@@ -69,8 +69,6 @@ export default function ConfirmStep() {
                   </div>
                 </div>
               )
-
-
             })}
           </div>
         </div>
