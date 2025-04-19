@@ -2,99 +2,66 @@
 description: 현재 내 디렉토리 구조를 설명해줄게
 globs: 
 ---
-## 📁 AiFitApp 프로젝트 디렉토리 구조 및 설명 (DogFit 기준)
+# 🐶 AiFitApp 프로젝트 디렉토리 구조
 
-### 1. 📁 `1_screens` - 화면 구성
+## 1. 📱 Screens (주요 화면)
 
-- **FormScreen**: 다단계 입력 폼 (강아지 정보 입력)
-    - `FormScreen.tsx`: 전체 폼 흐름 관리
-    - `01_NameStep.tsx`, `02_AgeWeightStep.tsx` 등: 단계별 입력 화면 구성
-    - `components/`, `animations/`: 폼 내부에서 사용하는 재사용 UI 및 애니메이션
-- **ResultScreen**: 입력 데이터를 기반으로 운동 결과 등 출력
+- `1_screens/FormScreen/`: 강아지 정보 입력을 위한 다단계 폼
+- `1_screens/ResultScreen/`: 맞춤 운동 추천 결과 화면
 
----
+## 2. 🎨 UI Components
 
-### 2. 📁 `2_ui` - UI 컴포넌트
+- `2_ui/base/`: 재사용 가능한 UI 요소 (Button, ProgressBar 등)
+- `2_ui/login/`: 로그인 화면 UI
+- `2_ui/signup/`: 회원가입 UI
+- `2_ui/onboarding/`: 온보딩 카드 UI
 
-- 온보딩, 로그인, 회원가입 등 기능별 UI 디렉토리 구성
-- `base/`: 버튼 등 공통 UI 컴포넌트 모음
+## 3. ⚙️ State Management
 
----
+- `useDogForm.ts`: 강아지 폼 상태 관리
+- `useStep.ts`: 폼 단계 관리 훅
+- `usePlan.ts`: 운동 플랜 상태 관리 *(예정)*
 
-### 3. 📁 `3_state` - 커스텀 훅 기반 상태관리
+## 4. 🧩 Utilities
 
-| 파일명 | 설명 |
-| --- | --- |
-| `useStep.ts` | 폼 단계 이동을 위한 step 상태 관리 (`nextStep`, `prevStep`) |
-| `useDogForm.ts` | 강아지 정보 입력 상태 관리 (`name`, `breed`, `weight` 등 예상) |
-| `usePlan.ts` | 운동 계획 관련 상태관리 예정 (현재 비어 있음) |
+- `cn.ts`: Tailwind 클래스 머지 유틸
+- `formatHealthLabel.ts`: 건강 수치 → 라벨 변환기
+- `formatAiResponse.ts`: AI 응답 포맷 유틸 *(예정)*
+- `promptBuilder.ts`: 프롬프트 생성기 *(예정)*
+- `FormStepConfig.ts`: 폼 단계 구성 설정 *(예정)*
 
----
+## 5. 🧠 AI Logic
 
-### 4. 📁 `4_utils` - 유틸리티 함수 모음
+- `recommend.ts`: AI 추천 알고리즘 *(예정)*
 
-| 파일명 | 설명 |
-| --- | --- |
-| `cn.ts` | Tailwind class 병합 유틸리티 (`clsx`, `tailwind-merge` 활용) |
-| `promptBuilder.ts` | AI 모델에 전달할 프롬프트 생성 로직 |
-| `formatAiResponse.ts` | AI 응답 포맷 가공 및 시각화 처리 |
-| `FormStepConfig.ts` | 폼 단계 관련 타입 및 설정 관리 |
+## 6. 📊 Static Data
 
----
+- `options/`: 환경, 성격, 건강 등 선택지 세트
+- `breeds.ts`: 견종 목록
+- `mockExercises.ts`: 목업 운동 데이터
+- `uiText.ts`: 다국어 텍스트 모음
 
-### 5. 📁 `5_ai` - AI 기능 구현 영역
+## 7. 🧾 Types
 
-- 맞춤형 운동 추천, 건강 분석 등 AI 관련 기능 로직 구현 예정
+- `dog.ts`: DogProfile 타입 정의
+- `healthLabels.ts`: 건강 상태 라벨 매핑
+- `performanceLabels.ts`: 퍼포먼스 라벨 매핑
+- `exercise.ts`, `steps.ts`, `onboarding.ts`: 기타 타입 정의
 
----
+## 8. 🏗️ App Routing & Layout
 
-### 6. 📁 `6_data` - 정적 데이터 저장소
+- `layout.tsx`: 루트 레이아웃 설정
+- `page.tsx`: 초기 진입 시 온보딩 리디렉션
+- `form/`: FormScreen 진입 경로
+- `onboarding/`: 온보딩 플로우
+- `login/`, `signup/`: 로그인 및 회원가입 페이지
+- `login_flow/`: 슬라이더 기반 인증 흐름
+- `components/`: 앱 내부 전용 레이아웃 컴포넌트
 
-- `options/`: 건강, 운동선호, 환경 등 옵션 리스트 정의
-- 품종 목록, UI 텍스트, 목업 데이터 등 포함 가능
+## 9. 🛣️ Next.js Pages
 
----
+- `pages/result.tsx`: `/result` 경로 전용 페이지
 
-### 7. 📁 `7_types` - 타입 및 유효성 검증
+## 10. 🌐 Public Assets
 
-- `DogProfile`, `HealthStatus` 등 타입 정의
-- Zod 기반 스키마로 유효성 검증 수행
-
----
-
-### 8. 📁 `8_app` - Next.js 라우트 중심 구조
-
-- `layout.tsx`: 전역 레이아웃
-- `page.tsx`: 진입 후 `/onboarding` 으로 이동 처리
-- 하위 디렉토리:
-    - `onboarding/`: 온보딩 슬라이드 (framer-motion)
-    - `login/`, `signup/`, `login_flow/`: 인증 관련 흐름
-    - `form/`: 강아지 정보 입력 구성
-    - `components/`: 각 섹션 공통 컴포넌트
-
----
-
-### 9. 📁 `9_components` - 재사용 가능한 공통 UI 컴포넌트
-
-- `Button.tsx`, `LayoutWrapper.tsx` 등 전체 앱에서 사용되는 UI 구성
-
----
-
-### 10. 📁 `public` - 정적 자산
-
-- 이미지, 폰트, JS, CSS 등 웹에서 직접 접근 가능한 리소스 저장소
-
----
-
-### 💡 확장 및 개발 방향 제안
-
-- 모든 Step 컴포넌트에 **Zod 스키마 연동**
-- `5_ai/`에 운동 추천 로직 분리 (`recommendationEngine.ts` 등)
-- `6_data/`는 `mock/`, `real/`로 분리해 운영용과 테스트 구분
-- `2_ui/base`에 `Card`, `Input`, `Select`, `Badge` 등 추가로 디자인 시스템 확장
-- `promptBuilder.ts` → 템플릿화하여 AI 커스터마이징 강화
-
----
-
-> 해당 구조는 DogFit 앱의 강아지 맞춤형 피트니스 추천 기능, 모바일 UI, AI 연동, 다국어 처리 등 다양한 요구사항을 반영한 이상적인 구조입니다. 이후 회원 관리, 커뮤니티, 피드백 시스템 등으로 확장 가능합니다.
->
+- `public/`: 정적 이미지 및 외부 공개 파일
